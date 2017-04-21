@@ -13,6 +13,5 @@ def get_vida():
 
 def set_vida(life):
     global vida
-    vidaAtual = life
     vida = life
 
