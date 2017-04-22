@@ -1,14 +1,16 @@
-UNIVERSIDADE PRESBITERIANA MACKENZIE
+<img a href='http://www.dislexia.org.br/wp-content/uploads/2017/03/logo-mackenzie.png'/>
 
-FACULDADE DE COMPUTAÇÃO E INFORMÁTICA
+#UNIVERSIDADE PRESBITERIANA MACKENZIE
 
-Kelly Ortiz Figueiredo
+#FACULDADE DE COMPUTAÇÃO E INFORMÁTICA
 
-Paula Guardão Miranda
+#Kelly Ortiz Figueiredo
 
-Rodrigo Vitor da Silva Ribeiro
+#Paula Guardão Miranda
 
-- a definir
+#Rodrigo Vitor da Silva Ribeiro
+
+*a definir*
 
 Trabalho de linguagem de programação 1
 
