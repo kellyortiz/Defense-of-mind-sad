@@ -15,7 +15,7 @@ class TestPontuacao(unittest.TestCase):
         
         pontuacao.aumentar_pontuacao(8)
         
-        self.assertEqual(18, pontuacao.ponto)
+        self.assertEqual(18, pontuacao.pontuacao)
 
      def test_get_pontuacao(self):
         pontuacao.iniciar_pontuacao()
