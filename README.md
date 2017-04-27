@@ -15,8 +15,8 @@
 ###### desenvolvimento de jogo.
 ###### Professor: Leandro Pupo Natale
 ###### Disciplina: Linguagem de Programação 1
-###### Turma: 02J12
+###### Turma: 02N12
 
 
 ###### São Paulo
-###### 22 de abril de 2017
+###### 27 de abril de 2017
