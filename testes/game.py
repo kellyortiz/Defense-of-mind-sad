@@ -36,13 +36,12 @@ while True:
             exit()
     screen.blit(pygame.Surface(screen.get_size()), (0, 0))
     for i in w:
-        x = 0
-        y = 50
+
         for j in w[i]:
             
             img = pygame.image.load(w[i][j]["img"]).convert_alpha()
             screen.blit(img, (w[i][j]["x"], w[i][j]["y"]))
-            x += 10
+            
     
     for i in range(1, cont):
         w["nojinho"][i-1]["x"] += w["nojinho"][i-1]["velocidade_atual"]

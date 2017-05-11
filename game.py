@@ -43,9 +43,17 @@ while True:
             y = 200
             for j in w[i]:
                 img = pygame.image.load(w[i][j]["img"]).convert_alpha()
-                screen.blit(img, (x, y))
+                screen.blit(img, (w[i][j]["x"], w[i][j]["y"]))
                 x += 10
-        
+        for i in range(1, cont):
+            for j in w:
+                w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+        if(cont < 11):
+            if not(ticks):
+                cont += 1
+                ticks = 22
+            else:
+                ticks -= 1
     
     
     screen.blit(menu, (548, 0))
