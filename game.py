@@ -51,16 +51,32 @@ while True:
             for j in w:
                 if(w[j][i-1]["x"] <= 130):
                     w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
-                elif(w[j][i-1]["y"] >= 220):
+                elif((w[j][i-1]["y"] >= 215) and (w[j][i-1]["x"] <= 252)):
                     w[j][i-1]["y"] -= w[j][i-1]["velocidade_atual"]
+                elif(w[j][i-1]["x"] <= 252):
+                    w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+                elif((w[j][i-1]["y"] >= 94) and (w[j][i-1]["x"] <= 378)):
+                    w[j][i-1]["y"] -= w[j][i-1]["velocidade_atual"]
+                elif(w[j][i-1]["x"] <= 378):
+                    w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+                elif(w[j][i-1]["y"] <= 403):
+                    w[j][i-1]["y"] += w[j][i-1]["velocidade_atual"]
+                elif(w[j][i-1]["x"] <= 456):
+                    w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+        aux = []
+        for i in range(1, cont):
+            for j in w:
+                if(w[j][i-1]["x"] >= 456):
+                    aux = w[j]
+        for i in range(len(aux)):
+            for j in w:
+                del w[j][i]
         if(cont < 11):
             if not(ticks):
                 cont += 1
                 ticks = 22
             else:
                 ticks -= 1
-    
-    
     screen.blit(menu, (548, 0))
     pygame.display.update()
     time_passed = clock.tick(25)
