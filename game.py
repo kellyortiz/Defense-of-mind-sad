@@ -45,9 +45,9 @@ while True:
                 img = pygame.image.load(w[i][j]["img"]).convert_alpha()
                 screen.blit(img, (x, y))
                 x += 10
-            
         
-
+    
+    
     screen.blit(menu, (548, 0))
     pygame.display.update()
     time_passed = clock.tick(25)
