@@ -4,7 +4,7 @@ import sys
 pygame.init()
 
 def menu(estado):
-    screen = pygame.display.set_mode((900,500),0,32)
+    screen = pygame.display.set_mode((800,650),0,32)
     fundo = 'iniciar.png'
     background = pygame.image.load(fundo).convert()
     
@@ -16,22 +16,9 @@ def menu(estado):
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.mouse.get_pressed() == (1,0,0):
                     x,y = pygame.mouse.get_pos()
-                    if (x > 12 and x < 333) and (y > 132 and y < 220):
+                    print(pygame.mouse.get_pos())
+                    if (x > 4 and x < 333) and (y > 328 and y < 418):
                         return jogo(evento)
-                        estado = False
-                        
-            if evento.type == pygame.MOUSEBUTTONDOWN:
-                if pygame.mouse.get_pressed() == (1,0,0):
-                    x,y = pygame.mouse.get_pos()
-                    if (x > 12 and x < 288) and (y > 242 and y < 332):
-                        return novojogo(evento)
-                        estado = False
-                        
-            if evento.type == pygame.MOUSEBUTTONDOWN:
-                if pygame.mouse.get_pressed() == (1,0,0):
-                    x,y = pygame.mouse.get_pos()
-                    if (x > 12 and x < 338) and (y > 362 and y < 451):
-                        return tutorial(evento)
                         estado = False
         
         pygame.display.update()
