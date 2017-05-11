@@ -9,7 +9,7 @@ from torres import roquei
 pygame.init()
 
 screen = pygame.display.set_mode((800, 650), 0, 32)
-
+menu = pygame.image.load("menu.png").convert_alpha()
 pygame.display.set_caption('Hello World')
 
 wave.criar_wave()
@@ -27,7 +27,6 @@ torreRoquei = roquei.criar_roquei()
 torreRoquei = roquei.criar_roquei()
 torreRoquei["img"] = pygame.image.load(torreRoquei["img"]).convert_alpha()
 clock = pygame.time.Clock()
-print(honestidade.get_disponibilidade())
 
 ticks = 22
 cont = 1
@@ -56,6 +55,6 @@ while True:
             ticks -= 1
     screen.blit(familias["img"], (100, 100))
     screen.blit(honestidades["img"], (200, 200))
-
+    screen.blit(menu, (552, 0))
     pygame.display.update()
     time_passed = clock.tick(25)
