@@ -38,7 +38,6 @@ while True:
             w = wave.get_wave()
             cont = 1
             new_wave = 75
-            moves = 1
     else:
         for i in w:
             x = 150
@@ -63,14 +62,7 @@ while True:
                     w[j][i-1]["y"] += w[j][i-1]["velocidade_atual"]
                 elif(w[j][i-1]["x"] <= 456):
                     w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
-        aux = []
-        for i in range(1, cont):
-            for j in w:
-                if(w[j][i-1]["x"] >= 456):
-                    aux = w[j]
-        for i in range(len(aux)):
-            for j in w:
-                del w[j][i]
+                    
         if(cont < 11):
             if not(ticks):
                 cont += 1
