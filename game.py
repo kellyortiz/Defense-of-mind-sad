@@ -20,6 +20,7 @@ clock = pygame.time.Clock()
 new_wave = 75
 w = []
 ticks = 22
+moves = 1
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -37,6 +38,7 @@ while True:
             w = wave.get_wave()
             cont = 1
             new_wave = 75
+            moves = 1
     else:
         for i in w:
             x = 150
@@ -47,7 +49,10 @@ while True:
                 x += 10
         for i in range(1, cont):
             for j in w:
-                w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+                if(w[j][i-1]["x"] <= 130):
+                    w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+                elif(w[j][i-1]["y"] >= 220):
+                    w[j][i-1]["y"] -= w[j][i-1]["velocidade_atual"]
         if(cont < 11):
             if not(ticks):
                 cont += 1
