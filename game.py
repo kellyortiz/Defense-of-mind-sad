@@ -46,9 +46,7 @@ while True:
             w = wave.get_wave()
             
             for i in w:
-                print(len(w[i]))
                 maximo.append(len(w[i]))
-            print(maximo)
             cont = 1
             start = 1
             new_wave = 75
@@ -85,14 +83,11 @@ while True:
             for i in w:
                 if(len(w[i]) == 0):
                     del w[i]
-                    print(w)
                     break
         for i in maximo:
             if(cont <= i):
                 if not(ticks):
                     cont += 1
-                    print("cont")
-                    print(cont)
                     ticks = 22
                 else:
                     ticks -= 1
