@@ -41,6 +41,7 @@ def criar_wave():
             new_wave.update(bolinhas)
     _aumentar_turn()
     waves.update(new_wave)
+    print(waves)
 
 
 def definir_wave():
