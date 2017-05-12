@@ -45,7 +45,7 @@ while True:
                         print("Familia")
                     elif((x > 655 and x < 720) and (y > 427 and y < 478)):
                         print("Honestidade")
-    
+
     screen.blit(tela, (4, 0))
     
     if(len(w) == 0):
