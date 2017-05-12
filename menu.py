@@ -5,7 +5,7 @@ pygame.init()
 
 def menu(estado):
     screen = pygame.display.set_mode((800,650),0,32)
-    fundo = 'iniciar.png'
+    fundo = 'img/iniciar.png'
     background = pygame.image.load(fundo).convert()
     
     while estado:
@@ -16,6 +16,7 @@ def menu(estado):
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.mouse.get_pressed() == (1,0,0):
                     x,y = pygame.mouse.get_pos()
+                    print(x)
                     print(pygame.mouse.get_pos())
                     if (x > 4 and x < 333) and (y > 328 and y < 418):
                         return jogo(evento)

@@ -5,7 +5,7 @@ pygame.init()
 
 def menu(estado):
     screen = pygame.display.set_mode((800,650),0,32)
-    fundo = 'gameover.png'
+    fundo = 'img/gameover.png'
     background = pygame.image.load(fundo).convert()
     
     while estado:

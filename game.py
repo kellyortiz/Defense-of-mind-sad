@@ -28,9 +28,23 @@ ticks = 22
 moves = 1
 maximo = []
 while True:
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            exit()
+    for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.mouse.get_pressed() == (1,0,0):
+                    x,y = pygame.mouse.get_pos()
+                    if ((x > 593 and x < 660) and (y > 175 and y < 230)):
+                        print("Roquei")
+                    elif((x > 710 and x < 780) and (y > 175 and y < 245)):
+                        print("Bobeira")
+                    elif((x > 593 and x < 660) and (y > 307 and y < 370)):
+                        print("Amizade")
+                    elif((x > 710 and x < 780) and (y > 307 and y < 370)):
+                        print("Familia")
+                    elif((x > 655 and x < 720) and (y > 427 and y < 478)):
+                        print("Honestidade")
     
     screen.blit(tela, (4, 0))
     
