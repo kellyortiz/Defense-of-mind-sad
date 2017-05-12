@@ -18,20 +18,27 @@ def criar_wave():
         new_wave.update(nw)
     elif(turn == 1):
         sentimento = "nojinho"
-        qtde_bolinhas = 12
-        nw = {sentimento: qtde_bolinhas}
-        new_wave.update(nw)
-        sentimento = "medo"
-        qtde_bolinhas = 4
+        qtde_bolinhas = 16
         nw = {sentimento: qtde_bolinhas}
         new_wave.update(nw)
     elif(turn == 2):
         sentimento = "medo"
-        qtde_bolinhas = 12
+        qtde_bolinhas = 14
         nw = {sentimento: qtde_bolinhas}
         new_wave.update(nw)
+    elif(turn == 3):
         sentimento = "raiva"
-        qtde_bolinhas = 4
+        qtde_bolinhas = 10
+        nw = {sentimento: qtde_bolinhas}
+        new_wave.update(nw)
+    elif(turn == 4):
+        sentimento = "medo"
+        qtde_bolinhas = 20
+        nw = {sentimento: qtde_bolinhas}
+        new_wave.update(nw)
+    elif(turn == 5):
+        sentimento = "tristeza"
+        qtde_bolinhas = 6
         nw = {sentimento: qtde_bolinhas}
         new_wave.update(nw)
     else:
@@ -90,20 +97,17 @@ def zerar_turn():
     global turn
     turn = 0
 
-def _definir_qtde_sentimentos():
-    i = random.randint(1, 4)
+def _definir_sentimento():
+    i = random.randint(0, 3)
     opcoes = ("nojinho", "medo", "raiva", "tristeza")
-    sentimentos = []
-    for j in range(i):
-        sentimentos.append(opcoes[j])
-    return sentimentos
+    sentimento = opcoes[i]
+    return sentimento
 
 def _definir_total_bolinhas():
-    s = _definir_qtde_sentimentos()
+    s = _definir_sentimento()
     bolinhas = {}
-    for i in s:
-        b = {i: random.randint(10, turn*(random.randint(10, 20)))}
-        bolinhas.update(b)
+    b = {s: random.randint(10, turn*5)}
+    bolinhas.update(b)
     return bolinhas
 
 def iniciar_wave():

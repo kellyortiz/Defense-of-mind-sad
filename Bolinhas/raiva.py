@@ -13,15 +13,15 @@ def criar_raiva(wave):
 
 def iniciar_hp():
     global hp
-    hp = 5
+    hp = 10
 
 def iniciar_velocidade():
     global velocidade
-    velocidade = 3
+    velocidade = 4
 
 def definir_hp(wave):
     global hp
-    hp = ((wave * 2) + 3)
+    hp = ((wave * 2) + 10)
 
 def get_hp():
     return hp

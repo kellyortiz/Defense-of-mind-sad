@@ -19,11 +19,11 @@ def iniciar_hp():
 
 def iniciar_velocidade():
     global velocidade
-    velocidade = 3
+    velocidade = 2
 
 def definir_hp(wave):
     global hp
-    hp = ((wave * 2) + 3)
+    hp = (wave * 3) + 5
 
 def get_hp():
     return hp

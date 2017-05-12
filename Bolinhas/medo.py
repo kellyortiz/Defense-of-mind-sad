@@ -13,7 +13,7 @@ def criar_medo(wave):
 
 def iniciar_hp():
     global hp
-    hp = 5
+    hp = 15
 
 def iniciar_velocidade():
     global velocidade
@@ -21,7 +21,7 @@ def iniciar_velocidade():
 
 def definir_hp(wave):
     global hp
-    hp = ((wave * 2) + 3)
+    hp = (wave * 3) + 15
 
 def get_hp():
     return hp

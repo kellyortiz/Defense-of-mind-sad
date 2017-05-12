@@ -13,15 +13,15 @@ def criar_tristeza(wave):
 
 def iniciar_hp():
     global hp
-    hp = 5
+    hp = 20
 
 def iniciar_velocidade():
     global velocidade
-    velocidade = 3
+    velocidade = 1
 
 def definir_hp(wave):
     global hp
-    hp = ((wave * 2) + 3)
+    hp = ((wave * 4) + 20)
 
 def get_hp():
     return hp
