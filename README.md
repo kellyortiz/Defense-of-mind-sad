@@ -7,16 +7,16 @@
 ##### Paula Guardão Miranda
 ##### Rodrigo Vitor da Silva Ribeiro
 
-#### * a definir *
+#### Defense of mind sad
 
 ###### Trabalho de linguagem de programação 1
 ###### apresentado a Universidade Presbiteriana
 ###### Mackenzie de São Paulo com o objetivo de
-###### desenvolvimento de jogo.
+###### desenvolvimento de jogo em pygame.
 ###### Professor: Leandro Pupo Natale
 ###### Disciplina: Linguagem de Programação 1
 ###### Turma: 02N12
 
 
 ###### São Paulo
-###### 27 de abril de 2017
+###### 12 de maio de 2017
