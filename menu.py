@@ -51,12 +51,7 @@ def menu(estado):
 def jogo(estado):
     screen = pygame.display.set_mode((600,600),0,32)
     import game.py
-    while estado:
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-                        
+    if (estado):
         screen.fill((0,0,0))
         pygame.display.flip()
         
@@ -67,8 +62,8 @@ while Switch == "menu":
     if Switch == "sair":
         pygame.quit()
         sys.exit()
-    while Switch == "jogo":
-        Switch = jogo(True)
+    if Switch == "jogo":
+        jogo(True)
 
 
     
