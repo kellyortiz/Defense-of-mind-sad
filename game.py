@@ -6,6 +6,7 @@ from torres import familia
 from torres import honestidade
 from torres import roquei
 from torres import bobeira
+from torres import amizade
 from Vida import vida
 import importlib
 
@@ -99,10 +100,24 @@ while True:
                             torre_bobeira[i]["img"] = pygame.image.load(torre_bobeira[i]["img"]).convert_alpha()
                 elif((x > 593 and x < 660) and (y > 307 and y < 370)):
                     print("Amizade")
+                    torre_amizade.append(amizade.criar_amizade())
+                    print(torre_amizade)
+                    for i in range(len(torre_amizade)):
+                        if(torre_amizade[i]["img"] == "torres/img/island/amizade.png"):
+                            torre_amizade[i]["img"] = pygame.image.load(torre_amizade[i]["img"]).convert_alpha()
                 elif((x > 710 and x < 780) and (y > 307 and y < 370)):
                     print("Familia")
+                    torre_familia.append(familia.criar_familia())
+                    for i in range(len(torre_familia)):
+                        if(torre_familia[i]["img"] == "torres/img/island/familia.png"):
+                            torre_familia[i]["img"] = pygame.image.load(torre_familia[i]["img"]).convert_alpha()
                 elif((x > 655 and x < 720) and (y > 427 and y < 478)):
                     print("Honestidade")
+                    torre_honestidade.append(honestidade.criar_honestidade())
+                    for i in range(len(torre_honestidade)):
+                        if(torre_honestidade[i]["img"] == "torres/img/island/honestidade.png"):
+                            torre_honestidade[i]["img"] = pygame.image.load(torre_honestidade[i]["img"]).convert_alpha()
+
                 elif((x > 613 and x < 749) and (y > 577 and y < 631)):
                     print(True)
                     iniciar()
@@ -112,6 +127,13 @@ while True:
                     torre_roquei[i]["posicionado"] = True
                 for i in range(len(torre_bobeira)):
                     torre_bobeira[i]["posicionado"] = True
+                for i in range(len(torre_amizade)):
+                    torre_amizade[i]["posicionado"] = True
+                for i in range(len(torre_familia)):
+                    torre_familia[i]["posicionado"] = True
+                for i in range(len(torre_honestidade)):
+                    torre_honestidade[i]["posicionado"] = True
+                
         elif(evento.type == pygame.MOUSEMOTION):
             for i in range(len(torre_roquei)):
                 if(torre_roquei[i]["posicionado"] == False):
@@ -123,12 +145,36 @@ while True:
                     mouse_x, mouse_y = evento.pos
                     torre_bobeira[i]["x"] = mouse_x-40
                     torre_bobeira[i]["y"] = mouse_y-66
+            for i in range(len(torre_amizade)):
+                if(torre_amizade[i]["posicionado"] == False):
+                    mouse_x, mouse_y = evento.pos
+                    torre_amizade[i]["x"] = mouse_x-34
+                    torre_amizade[i]["y"] = mouse_y-52
+            for i in range(len(torre_familia)):
+                if(torre_familia[i]["posicionado"] == False):
+                    mouse_x, mouse_y = evento.pos
+                    torre_familia[i]["x"] = mouse_x-39
+                    torre_familia[i]["y"] = mouse_y-39
+            for i in range(len(torre_honestidade)):
+                if(torre_honestidade[i]["posicionado"] == False):
+                    mouse_x, mouse_y = evento.pos
+                    torre_honestidade[i]["x"] = mouse_x-39
+                    torre_honestidade[i]["y"] = mouse_y-39
 
     for i in range(len(torre_roquei)):
         screen.blit(torre_roquei[i]["img"], (torre_roquei[i]["x"], torre_roquei[i]["y"]))
 
     for i in range(len(torre_bobeira)):
         screen.blit(torre_bobeira[i]["img"], (torre_bobeira[i]["x"], torre_bobeira[i]["y"]))
+
+    for i in range(len(torre_amizade)):
+        screen.blit(torre_amizade[i]["img"], (torre_amizade[i]["x"], torre_amizade[i]["y"]))
+
+    for i in range(len(torre_familia)):
+        screen.blit(torre_familia[i]["img"], (torre_familia[i]["x"], torre_familia[i]["y"]))
+
+    for i in range(len(torre_honestidade)):
+        screen.blit(torre_honestidade[i]["img"], (torre_honestidade[i]["x"], torre_honestidade[i]["y"]))
 
     if(len(w) == 0):
         if(new_wave > 0):

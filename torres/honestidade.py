@@ -7,6 +7,9 @@ disponivel = 0
 tempo = 0
 tipoTiro = ""
 img = ""
+posicionado = False
+x = 0
+y = 0
 
 def iniciar_torres():
     global alcance
@@ -16,6 +19,9 @@ def iniciar_torres():
     global tempo
     global tipoTiro
     global img
+    global posicionado
+    global x
+    global y
     
     alcance = 64
     dano = 6
@@ -23,7 +29,10 @@ def iniciar_torres():
     disponivel = 5
     tempo = 80
     tipoTiro = "b"
-    img = "torres/img/island/honestidade.png"
+    img = "torres/img/island/honestidade.png"    
+    posicionado = False
+    x = 655
+    y = 427
 
 def _diminuir_disponibilidade():
     global disponivel
@@ -31,7 +40,7 @@ def _diminuir_disponibilidade():
 
 def criar_honestidade():
     _diminuir_disponibilidade()
-    torre = torres.criar_torre(alcance, velocidade, tipoTiro, dano, tempo, img)
+    torre = torres.criar_torre(alcance, velocidade, tipoTiro, dano, tempo, img, posicionado, x, y)
     return torre
 
 def get_disponibilidade():

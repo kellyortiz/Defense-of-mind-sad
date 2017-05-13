@@ -24,21 +24,21 @@ def iniciar_torres():
     global y
     
     alcance = 78
-    dano = 6
-    velocidade = 2
-    disponivel = 7
-    tempo = 60
+    dano = 1
+    velocidade = 3
+    disponivel = 2
+    tempo = 120
     tipoTiro = "b"
-    img = "torres/img/island/familia.png"
+    img = "torres/img/island/amizade.png"
     posicionado = False
-    x = 710
+    x = 593
     y = 307
 
 def _diminuir_disponibilidade():
     global disponivel
     disponivel -= 1
 
-def criar_familia():
+def criar_amizade():
     _diminuir_disponibilidade()
     torre = torres.criar_torre(alcance, velocidade, tipoTiro, dano, tempo, img, posicionado, x, y)
     return torre
