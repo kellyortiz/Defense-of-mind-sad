@@ -1,5 +1,6 @@
 import pygame
 import sys
+import importlib
 
 pygame.init()
 
@@ -49,8 +50,11 @@ def menu(estado):
         pygame.display.flip()
 
 def jogo(estado):
-    screen = pygame.display.set_mode((600,600),0,32)
-    import game.py
+    screen = pygame.display.set_mode((800,650),0,32)
+    if("game" in sys.modules):
+        importlib.reload(sys.modules["game"])
+    else:
+        import game.py
     if (estado):
         screen.fill((0,0,0))
         pygame.display.flip()

@@ -1,12 +1,12 @@
-vida = 30
-vidaAtual = 1
+vida = 0
+
 def iniciar_vida():
     global vida
     vida = 30
     
 def reduzir_vida():
     global vida
-    vida -= vidaAtual
+    vida -= 1
 
 def get_vida():
     return vida

@@ -6,7 +6,8 @@ from torres import familia
 from torres import honestidade
 from torres import roquei
 from torres import bobeira
-
+from Vida import vida
+import importlib
 
 pygame.init()
 
@@ -24,13 +25,43 @@ w = []
 ticks = 22
 moves = 1
 maximo = []
+vida.iniciar_vida()
 
-def iniciar(estado):
-            screen = pygame.display.set_mode((600,600),0,32)
-            import menu.py
-            if(estado):
-                screen.fill((0,0,0))
-                pygame.display.flip()
+def restart():
+    global reiniciar
+    global new_wave
+    global w
+    global ticks
+    global moves
+    global maximo
+    reiniciar = False
+    new_wave = 75
+    w = []
+    ticks = 22
+    moves = 1
+    maximo = []
+    wave.zerar_turn()
+    vida.iniciar_vida()
+
+def iniciar():
+    restart()
+    screen = pygame.display.set_mode((800,650),0,32)
+    if("menu" in sys.modules):
+        importlib.reload(sys.modules["menu"])
+    else:
+        import menu.py
+    screen.fill((0,0,0))
+    pygame.display.flip()
+
+def finalizar():
+    restart()
+    screen = pygame.display.set_mode((800,650),0,32)
+    if("gameover" in sys.modules):
+        importlib.reload(sys.modules["gameover"])
+    else:
+        import gameover.py
+    screen.fill((0,0,0))
+    pygame.display.flip()
 
 while True:
     for evento in pygame.event.get():
@@ -53,7 +84,7 @@ while True:
                     print("Honestidade")
                 elif((x > 613 and x < 749) and (y > 577 and y < 631)):
                     print(True)
-                    iniciar(True)
+                    iniciar()
 
     screen.blit(tela, (4, 0))
         
@@ -67,7 +98,7 @@ while True:
             wave.criar_wave()
             wave.definir_wave()
             w = wave.get_wave()
-                
+            print(wave.turn)
             for i in w:
                 maximo.append(len(w[i]))
             cont = 1
@@ -99,6 +130,12 @@ while True:
                     w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
                 else:
                     del w[j][i-1]
+                    vida.reduzir_vida()
+                    vidas = vida.get_vida()
+                    print(vidas)
+                    if(vidas == 0):
+                        print("gameover")
+                        finalizar()
                     start += 1
                     if(len(w[j]) == 0):
                         reiniciar = True
@@ -117,15 +154,4 @@ while True:
     screen.blit(menu, (548, 0))
     pygame.display.update()
     time_passed = clock.tick(25)
-
-            
-##Switch = "menu"
-##
-##while Switch == "menu":
-##    Switch = menu(True)
-##    if Switch == "sair":
-##        pygame.quit()
-##        sys.exit()
-##    while Switch == "iniciar":
-##        Switch = iniciar(True)
         

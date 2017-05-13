@@ -1,5 +1,6 @@
 import pygame
 import sys
+import importlib
 
 pygame.init()
 
@@ -26,7 +27,10 @@ def menu(estado):
 
 def mmenu(estado):
     screen = pygame.display.set_mode((600,600),0,32)
-    import menu.py
+    if("menu" in sys.modules):
+        importlib.reload(sys.modules["menu"])
+    else:
+        import menu.py
     while estado:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
