@@ -31,8 +31,8 @@ def iniciar_torres():
     tipoTiro = "b"
     img = "torres/img/island/roquei.png"
     posicionado = False
-    x = 0
-    y = 0
+    x = 593
+    y = 175
 
 def _diminuir_disponibilidade():
     global disponivel

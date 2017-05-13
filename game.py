@@ -110,8 +110,8 @@ while True:
             for i in range(len(torre_roquei)):
                 if(torre_roquei[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
-                    torre_roquei[i]["x"] = mouse_x
-                    torre_roquei[i]["y"] = mouse_y
+                    torre_roquei[i]["x"] = mouse_x-35
+                    torre_roquei[i]["y"] = mouse_y-43
     for i in range(len(torre_roquei)):
         screen.blit(torre_roquei[i]["img"], (torre_roquei[i]["x"], torre_roquei[i]["y"]))
     if(len(w) == 0):
