@@ -91,7 +91,6 @@ while True:
                     for i in range(len(torre_roquei)):
                         if(torre_roquei[i]["img"] == "torres/img/island/roquei.png"):
                             torre_roquei[i]["img"] = pygame.image.load(torre_roquei[i]["img"]).convert_alpha()
-                        
                 elif((x > 710 and x < 780) and (y > 175 and y < 245)):
                     print("Bobeira")
                 elif((x > 593 and x < 660) and (y > 307 and y < 370)):
@@ -103,7 +102,18 @@ while True:
                 elif((x > 613 and x < 749) and (y > 577 and y < 631)):
                     print(True)
                     iniciar()
-        
+        elif(evento.type == pygame.MOUSEBUTTONUP):
+            if(evento.button == 1):
+                for i in range(len(torre_roquei)):
+                    torre_roquei[i]["posicionado"] = True
+        elif(evento.type == pygame.MOUSEMOTION):
+            for i in range(len(torre_roquei)):
+                if(torre_roquei[i]["posicionado"] == False):
+                    mouse_x, mouse_y = evento.pos
+                    torre_roquei[i]["x"] = mouse_x
+                    torre_roquei[i]["y"] = mouse_y
+    for i in range(len(torre_roquei)):
+        screen.blit(torre_roquei[i]["img"], (torre_roquei[i]["x"], torre_roquei[i]["y"]))
     if(len(w) == 0):
         if(new_wave > 0):
             new_wave -= 1
@@ -167,10 +177,6 @@ while True:
                     ticks = 22
                 else:
                     ticks -= 1
-    xy = [100, 100]
-    for i in range(len(torre_roquei)):
-        screen.blit(torre_roquei[i]["img"], xy)
-        xy[0] += 80
     pygame.display.update()
     time_passed = clock.tick(25)
         
