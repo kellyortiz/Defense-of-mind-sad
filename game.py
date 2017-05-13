@@ -26,6 +26,11 @@ ticks = 22
 moves = 1
 maximo = []
 vida.iniciar_vida()
+torre_familia = []
+torre_honestidade = []
+torre_bobeira = []
+torre_amizade = []
+torre_roquei = []
 
 def restart():
     global reiniciar
@@ -42,6 +47,11 @@ def restart():
     maximo = []
     wave.zerar_turn()
     vida.iniciar_vida()
+    torre_familia = []
+    torre_honestidade = []
+    torre_bobeira = []
+    torre_amizade = []
+    torre_roquei = []
 
 def iniciar():
     restart()
@@ -64,6 +74,9 @@ def finalizar():
     pygame.display.flip()
 
 while True:
+    
+    screen.blit(tela, (4, 0))
+    screen.blit(menu, (548, 0))
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             pygame.quit()
@@ -74,6 +87,11 @@ while True:
                 print(pygame.mouse.get_pos())
                 if ((x > 593 and x < 660) and (y > 175 and y < 230)):
                     print("Roquei")
+                    torre_roquei.append(roquei.criar_roquei())
+                    for i in range(len(torre_roquei)):
+                        if(torre_roquei[i]["img"] == "torres/img/island/roquei.png"):
+                            torre_roquei[i]["img"] = pygame.image.load(torre_roquei[i]["img"]).convert_alpha()
+                        
                 elif((x > 710 and x < 780) and (y > 175 and y < 245)):
                     print("Bobeira")
                 elif((x > 593 and x < 660) and (y > 307 and y < 370)):
@@ -85,8 +103,6 @@ while True:
                 elif((x > 613 and x < 749) and (y > 577 and y < 631)):
                     print(True)
                     iniciar()
-
-    screen.blit(tela, (4, 0))
         
     if(len(w) == 0):
         if(new_wave > 0):
@@ -151,7 +167,10 @@ while True:
                     ticks = 22
                 else:
                     ticks -= 1
-    screen.blit(menu, (548, 0))
+    xy = [100, 100]
+    for i in range(len(torre_roquei)):
+        screen.blit(torre_roquei[i]["img"], xy)
+        xy[0] += 80
     pygame.display.update()
     time_passed = clock.tick(25)
         
