@@ -93,6 +93,10 @@ while True:
                             torre_roquei[i]["img"] = pygame.image.load(torre_roquei[i]["img"]).convert_alpha()
                 elif((x > 710 and x < 780) and (y > 175 and y < 245)):
                     print("Bobeira")
+                    torre_bobeira.append(bobeira.criar_bobeira())
+                    for i in range(len(torre_bobeira)):
+                        if(torre_bobeira[i]["img"] == "torres/img/island/bobeira.png"):
+                            torre_bobeira[i]["img"] = pygame.image.load(torre_bobeira[i]["img"]).convert_alpha()
                 elif((x > 593 and x < 660) and (y > 307 and y < 370)):
                     print("Amizade")
                 elif((x > 710 and x < 780) and (y > 307 and y < 370)):
@@ -106,14 +110,26 @@ while True:
             if(evento.button == 1):
                 for i in range(len(torre_roquei)):
                     torre_roquei[i]["posicionado"] = True
+                for i in range(len(torre_bobeira)):
+                    torre_bobeira[i]["posicionado"] = True
         elif(evento.type == pygame.MOUSEMOTION):
             for i in range(len(torre_roquei)):
                 if(torre_roquei[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
                     torre_roquei[i]["x"] = mouse_x-35
                     torre_roquei[i]["y"] = mouse_y-43
+            for i in range(len(torre_bobeira)):
+                if(torre_bobeira[i]["posicionado"] == False):
+                    mouse_x, mouse_y = evento.pos
+                    torre_bobeira[i]["x"] = mouse_x-40
+                    torre_bobeira[i]["y"] = mouse_y-66
+
     for i in range(len(torre_roquei)):
         screen.blit(torre_roquei[i]["img"], (torre_roquei[i]["x"], torre_roquei[i]["y"]))
+
+    for i in range(len(torre_bobeira)):
+        screen.blit(torre_bobeira[i]["img"], (torre_bobeira[i]["x"], torre_bobeira[i]["y"]))
+
     if(len(w) == 0):
         if(new_wave > 0):
             new_wave -= 1
