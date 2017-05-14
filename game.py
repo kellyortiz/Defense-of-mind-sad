@@ -75,7 +75,7 @@ def finalizar():
     pygame.display.flip()
 
 while True:
-    
+    screen.fill((255, 255, 255))
     screen.blit(tela, (4, 0))
     screen.blit(menu, (548, 0))
     for evento in pygame.event.get():
@@ -140,6 +140,7 @@ while True:
                     mouse_x, mouse_y = evento.pos
                     torre_roquei[i]["x"] = mouse_x-35
                     torre_roquei[i]["y"] = mouse_y-43
+                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 100, 2)
             for i in range(len(torre_bobeira)):
                 if(torre_bobeira[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
@@ -163,6 +164,8 @@ while True:
 
     for i in range(len(torre_roquei)):
         screen.blit(torre_roquei[i]["img"], (torre_roquei[i]["x"], torre_roquei[i]["y"]))
+        if(torre_roquei[i]["posicionado"] == False):
+            pygame.draw.circle(screen, (255, 255, 0), (torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43), 100, 2)
 
     for i in range(len(torre_bobeira)):
         screen.blit(torre_bobeira[i]["img"], (torre_bobeira[i]["x"], torre_bobeira[i]["y"]))
