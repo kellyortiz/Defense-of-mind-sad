@@ -146,6 +146,7 @@ while True:
                     mouse_x, mouse_y = evento.pos
                     torre_bobeira[i]["x"] = mouse_x-40
                     torre_bobeira[i]["y"] = mouse_y-66
+                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 156, 2)
             for i in range(len(torre_amizade)):
                 if(torre_amizade[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
@@ -169,6 +170,9 @@ while True:
 
     for i in range(len(torre_bobeira)):
         screen.blit(torre_bobeira[i]["img"], (torre_bobeira[i]["x"], torre_bobeira[i]["y"]))
+        if(torre_bobeira[i]["posicionado"] == False):
+            pygame.draw.circle(screen, (255, 255, 0), (torre_bobeira[i]["x"]+40, torre_bobeira[i]["y"]+66), 156, 2)
+
 
     for i in range(len(torre_amizade)):
         screen.blit(torre_amizade[i]["img"], (torre_amizade[i]["x"], torre_amizade[i]["y"]))
