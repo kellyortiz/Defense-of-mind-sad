@@ -13,12 +13,24 @@ import importlib
 pygame.init()
 
 screen = pygame.display.set_mode((800, 650), 0, 32)
+
 menu = pygame.image.load("img/menu.png").convert_alpha()
 tela = pygame.image.load("img/game.jpg").convert_alpha()
 
 pygame.display.set_caption('Defense of mind sad')
 
 clock = pygame.time.Clock()
+
+rects = []
+
+rects.append(pygame.rect.Rect(109, 188, 72, 313))
+rects.append(pygame.rect.Rect(181, 188, 122, 72))
+rects.append(pygame.rect.Rect(230, 62, 72, 126))
+rects.append(pygame.rect.Rect(302, 62, 125, 72))
+rects.append(pygame.rect.Rect(355, 138, 72, 314))
+
+print(len(rects))
+print(rects)
 
 reiniciar = False
 new_wave = 75
@@ -76,6 +88,8 @@ def finalizar():
 
 while True:
     screen.fill((255, 255, 255))
+    for i in range(len(rects)):
+        pygame.draw.rect(screen, (255, 0, 0), rects[i])
     screen.blit(tela, (4, 0))
     screen.blit(menu, (548, 0))
     for evento in pygame.event.get():
@@ -140,56 +154,81 @@ while True:
                     mouse_x, mouse_y = evento.pos
                     torre_roquei[i]["x"] = mouse_x-35
                     torre_roquei[i]["y"] = mouse_y-43
-                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 100, 2)
             for i in range(len(torre_bobeira)):
                 if(torre_bobeira[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
                     torre_bobeira[i]["x"] = mouse_x-40
                     torre_bobeira[i]["y"] = mouse_y-66
-                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 156, 2)
             for i in range(len(torre_amizade)):
                 if(torre_amizade[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
                     torre_amizade[i]["x"] = mouse_x-34
                     torre_amizade[i]["y"] = mouse_y-52
-                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 212, 2)
             for i in range(len(torre_familia)):
                 if(torre_familia[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
                     torre_familia[i]["x"] = mouse_x-39
                     torre_familia[i]["y"] = mouse_y-39
-                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 156, 2)
             for i in range(len(torre_honestidade)):
                 if(torre_honestidade[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
                     torre_honestidade[i]["x"] = mouse_x-39
                     torre_honestidade[i]["y"] = mouse_y-39
-                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 128, 2)
 
     for i in range(len(torre_roquei)):
         screen.blit(torre_roquei[i]["img"], (torre_roquei[i]["x"], torre_roquei[i]["y"]))
         if(torre_roquei[i]["posicionado"] == False):
-            pygame.draw.circle(screen, (255, 255, 0), (torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43), 100, 2)
+            color = (255, 255, 0)
+            for r in rects:
+                roquei_rect = pygame.rect.Rect(torre_roquei[i]["x"]+7, torre_roquei[i]["y"]+7, 53, 55)
+                if(r.colliderect(roquei_rect)):
+                    color = (255, 0, 0)
+                    print(True)
+            pygame.draw.circle(screen, color, (torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43), 100, 2)
 
     for i in range(len(torre_bobeira)):
         screen.blit(torre_bobeira[i]["img"], (torre_bobeira[i]["x"], torre_bobeira[i]["y"]))
         if(torre_bobeira[i]["posicionado"] == False):
-            pygame.draw.circle(screen, (255, 255, 0), (torre_bobeira[i]["x"]+40, torre_bobeira[i]["y"]+66), 156, 2)
+            color = (255, 255, 0)
+            for r in rects:
+                bobeira_rect = pygame.rect.Rect(torre_bobeira[i]["x"]+7, torre_bobeira[i]["y"]+7, 72, 87)
+                if(r.colliderect(bobeira_rect)):
+                    color = (255, 0, 0)
+                    print(True)
+            pygame.draw.circle(screen, color, (torre_bobeira[i]["x"]+40, torre_bobeira[i]["y"]+66), 156, 2)
 
     for i in range(len(torre_amizade)):
         screen.blit(torre_amizade[i]["img"], (torre_amizade[i]["x"], torre_amizade[i]["y"]))
         if(torre_amizade[i]["posicionado"] == False):
-            pygame.draw.circle(screen, (255, 255, 0), (torre_amizade[i]["x"]+34, torre_amizade[i]["y"]+52), 212, 2)
+            color = (255, 255, 0)
+            for r in rects:
+                amizade_rect = pygame.rect.Rect(torre_amizade[i]["x"]+7, torre_amizade[i]["y"]+7, 59, 71)
+                if(r.colliderect(amizade_rect)):
+                    color = (255, 0, 0)
+                    print(True)
+            pygame.draw.circle(screen, color, (torre_amizade[i]["x"]+34, torre_amizade[i]["y"]+52), 212, 2)
 
     for i in range(len(torre_familia)):
         screen.blit(torre_familia[i]["img"], (torre_familia[i]["x"], torre_familia[i]["y"]))
         if(torre_familia[i]["posicionado"] == False):
-            pygame.draw.circle(screen, (255, 255, 0), (torre_familia[i]["x"]+39, torre_familia[i]["y"]+39), 156, 2)
+            color = (255, 255, 0)
+            for r in rects:
+                familia_rect = pygame.rect.Rect(torre_familia[i]["x"]+7, torre_familia[i]["y"]+7, 71, 59)
+                if(r.colliderect(familia_rect)):
+                    color = (255, 0, 0)
+                    print(True)
+            pygame.draw.circle(screen, color, (torre_familia[i]["x"]+39, torre_familia[i]["y"]+39), 156, 2)
 
     for i in range(len(torre_honestidade)):
         screen.blit(torre_honestidade[i]["img"], (torre_honestidade[i]["x"], torre_honestidade[i]["y"]))
         if(torre_honestidade[i]["posicionado"] == False):
-            pygame.draw.circle(screen, (255, 255, 0), (torre_honestidade[i]["x"]+39, torre_honestidade[i]["y"]+39), 128, 2)
+            color = (255, 255, 0)
+            for r in rects:
+                honestidade_rect = pygame.rect.Rect(torre_honestidade[i]["x"]+7, torre_honestidade[i]["y"]+7, 71, 64)
+                if(r.colliderect(honestidade_rect)):
+                    color = (255, 0, 0)
+                    print(True)
+            pygame.draw.circle(screen, color, (torre_honestidade[i]["x"]+39, torre_honestidade[i]["y"]+39), 128, 2)
 
     if(len(w) == 0):
         if(new_wave > 0):
