@@ -164,6 +164,7 @@ while True:
                     mouse_x, mouse_y = evento.pos
                     torre_honestidade[i]["x"] = mouse_x-39
                     torre_honestidade[i]["y"] = mouse_y-39
+                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 128, 2)
 
     for i in range(len(torre_roquei)):
         screen.blit(torre_roquei[i]["img"], (torre_roquei[i]["x"], torre_roquei[i]["y"]))
@@ -187,6 +188,8 @@ while True:
 
     for i in range(len(torre_honestidade)):
         screen.blit(torre_honestidade[i]["img"], (torre_honestidade[i]["x"], torre_honestidade[i]["y"]))
+        if(torre_honestidade[i]["posicionado"] == False):
+            pygame.draw.circle(screen, (255, 255, 0), (torre_honestidade[i]["x"]+39, torre_honestidade[i]["y"]+39), 128, 2)
 
     if(len(w) == 0):
         if(new_wave > 0):
