@@ -152,11 +152,13 @@ while True:
                     mouse_x, mouse_y = evento.pos
                     torre_amizade[i]["x"] = mouse_x-34
                     torre_amizade[i]["y"] = mouse_y-52
+                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 212, 2)
             for i in range(len(torre_familia)):
                 if(torre_familia[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
                     torre_familia[i]["x"] = mouse_x-39
                     torre_familia[i]["y"] = mouse_y-39
+                    pygame.draw.circle(screen, (255, 255, 0), (mouse_x, mouse_y), 156, 2)
             for i in range(len(torre_honestidade)):
                 if(torre_honestidade[i]["posicionado"] == False):
                     mouse_x, mouse_y = evento.pos
@@ -173,12 +175,15 @@ while True:
         if(torre_bobeira[i]["posicionado"] == False):
             pygame.draw.circle(screen, (255, 255, 0), (torre_bobeira[i]["x"]+40, torre_bobeira[i]["y"]+66), 156, 2)
 
-
     for i in range(len(torre_amizade)):
         screen.blit(torre_amizade[i]["img"], (torre_amizade[i]["x"], torre_amizade[i]["y"]))
+        if(torre_amizade[i]["posicionado"] == False):
+            pygame.draw.circle(screen, (255, 255, 0), (torre_amizade[i]["x"]+34, torre_amizade[i]["y"]+52), 212, 2)
 
     for i in range(len(torre_familia)):
         screen.blit(torre_familia[i]["img"], (torre_familia[i]["x"], torre_familia[i]["y"]))
+        if(torre_familia[i]["posicionado"] == False):
+            pygame.draw.circle(screen, (255, 255, 0), (torre_familia[i]["x"]+39, torre_familia[i]["y"]+39), 156, 2)
 
     for i in range(len(torre_honestidade)):
         screen.blit(torre_honestidade[i]["img"], (torre_honestidade[i]["x"], torre_honestidade[i]["y"]))
