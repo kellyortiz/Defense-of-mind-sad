@@ -179,55 +179,150 @@ while True:
         screen.blit(torre_roquei[i]["img"], (torre_roquei[i]["x"], torre_roquei[i]["y"]))
         if(torre_roquei[i]["posicionado"] == False):
             color = (255, 255, 0)
+            roquei_rect = pygame.rect.Rect(torre_roquei[i]["x"]+7, torre_roquei[i]["y"]+7, 71, 64)
             for r in rects:
-                roquei_rect = pygame.rect.Rect(torre_roquei[i]["x"]+7, torre_roquei[i]["y"]+7, 53, 55)
                 if(r.colliderect(roquei_rect)):
                     color = (255, 0, 0)
-                    print(True)
+            for t in torre_bobeira:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 62, 77)
+                if(rect_torre.colliderect(roquei_rect)):
+                    color = (255, 0, 0)
+            for t in torre_familia:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 61, 49)
+                if(rect_torre.colliderect(roquei_rect)):
+                    color = (255, 0, 0)
+            for t in range(len(torre_roquei)-1):
+                rect_torre = pygame.rect.Rect(torre_roquei[t]["x"]+17, torre_roquei[t]["y"]+17, 43, 45)
+                if(rect_torre.colliderect(roquei_rect)):
+                    color = (255, 0, 0)
+            for t in torre_amizade:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 49, 61)
+                if(rect_torre.colliderect(roquei_rect)):
+                    color = (255, 0, 0)
+            for t in torre_honestidade:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 61, 54)
+                if(rect_torre.colliderect(roquei_rect)):
+                    color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43), 100, 2)
 
     for i in range(len(torre_bobeira)):
         screen.blit(torre_bobeira[i]["img"], (torre_bobeira[i]["x"], torre_bobeira[i]["y"]))
         if(torre_bobeira[i]["posicionado"] == False):
             color = (255, 255, 0)
+            bobeira_rect = pygame.rect.Rect(torre_bobeira[i]["x"]+7, torre_bobeira[i]["y"]+7, 71, 64)
             for r in rects:
-                bobeira_rect = pygame.rect.Rect(torre_bobeira[i]["x"]+7, torre_bobeira[i]["y"]+7, 72, 87)
                 if(r.colliderect(bobeira_rect)):
                     color = (255, 0, 0)
-                    print(True)
+            for t in range(len(torre_bobeira)-1):
+                rect_torre = pygame.rect.Rect(torre_bobeira[t]["x"]+17, torre_bobeira[t]["y"]+17, 62, 77)
+                if(rect_torre.colliderect(bobeira_rect)):
+                    color = (255, 0, 0)
+            for t in torre_familia:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 61, 49)
+                if(rect_torre.colliderect(bobeira_rect)):
+                    color = (255, 0, 0)
+            for t in torre_roquei:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 43, 45)
+                if(rect_torre.colliderect(bobeira_rect)):
+                    color = (255, 0, 0)
+            for t in torre_amizade:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 49, 61)
+                if(rect_torre.colliderect(bobeira_rect)):
+                    color = (255, 0, 0)
+            for t in torre_honestidade:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 61, 54)
+                if(rect_torre.colliderect(bobeira_rect)):
+                    color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_bobeira[i]["x"]+40, torre_bobeira[i]["y"]+66), 156, 2)
 
     for i in range(len(torre_amizade)):
         screen.blit(torre_amizade[i]["img"], (torre_amizade[i]["x"], torre_amizade[i]["y"]))
         if(torre_amizade[i]["posicionado"] == False):
             color = (255, 255, 0)
+            amizade_rect = pygame.rect.Rect(torre_amizade[i]["x"]+7, torre_amizade[i]["y"]+7, 71, 64)
             for r in rects:
-                amizade_rect = pygame.rect.Rect(torre_amizade[i]["x"]+7, torre_amizade[i]["y"]+7, 59, 71)
                 if(r.colliderect(amizade_rect)):
                     color = (255, 0, 0)
-                    print(True)
+            for t in torre_bobeira:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 62, 77)
+                if(rect_torre.colliderect(amizade_rect)):
+                    color = (255, 0, 0)
+            for t in torre_familia:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 61, 49)
+                if(rect_torre.colliderect(amizade_rect)):
+                    color = (255, 0, 0)
+            for t in torre_roquei:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 43, 45)
+                if(rect_torre.colliderect(amizade_rect)):
+                    color = (255, 0, 0)
+            for t in range(len(torre_amizade)-1):
+                rect_torre = pygame.rect.Rect(torre_amizade[t]["x"]+17, torre_amizade[t]["y"]+17, 49, 61)
+                if(rect_torre.colliderect(amizade_rect)):
+                    color = (255, 0, 0)
+            for t in torre_honestidade:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 61, 54)
+                if(rect_torre.colliderect(amizade_rect)):
+                    color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_amizade[i]["x"]+34, torre_amizade[i]["y"]+52), 212, 2)
 
     for i in range(len(torre_familia)):
         screen.blit(torre_familia[i]["img"], (torre_familia[i]["x"], torre_familia[i]["y"]))
         if(torre_familia[i]["posicionado"] == False):
             color = (255, 255, 0)
+            familia_rect = pygame.rect.Rect(torre_familia[i]["x"]+7, torre_familia[i]["y"]+7, 71, 64)
             for r in rects:
-                familia_rect = pygame.rect.Rect(torre_familia[i]["x"]+7, torre_familia[i]["y"]+7, 71, 59)
                 if(r.colliderect(familia_rect)):
                     color = (255, 0, 0)
-                    print(True)
+            for t in torre_bobeira:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 62, 77)
+                if(rect_torre.colliderect(familia_rect)):
+                    color = (255, 0, 0)
+            for t in range(len(torre_familia)-1):
+                rect_torre = pygame.rect.Rect(torre_familia[t]["x"]+17, torre_familia[t]["y"]+17, 61, 49)
+                if(rect_torre.colliderect(familia_rect)):
+                    color = (255, 0, 0)
+            for t in torre_roquei:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 43, 45)
+                if(rect_torre.colliderect(familia_rect)):
+                    color = (255, 0, 0)
+            for t in torre_amizade:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 49, 61)
+                if(rect_torre.colliderect(familia_rect)):
+                    color = (255, 0, 0)
+            for t in torre_honestidade:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 61, 54)
+                if(rect_torre.colliderect(familia_rect)):
+                    color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_familia[i]["x"]+39, torre_familia[i]["y"]+39), 156, 2)
 
     for i in range(len(torre_honestidade)):
         screen.blit(torre_honestidade[i]["img"], (torre_honestidade[i]["x"], torre_honestidade[i]["y"]))
         if(torre_honestidade[i]["posicionado"] == False):
             color = (255, 255, 0)
+            honestidade_rect = pygame.rect.Rect(torre_honestidade[i]["x"]+7, torre_honestidade[i]["y"]+7, 71, 64)
             for r in rects:
-                honestidade_rect = pygame.rect.Rect(torre_honestidade[i]["x"]+7, torre_honestidade[i]["y"]+7, 71, 64)
                 if(r.colliderect(honestidade_rect)):
                     color = (255, 0, 0)
-                    print(True)
+            for t in torre_bobeira:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 62, 77)
+                if(rect_torre.colliderect(honestidade_rect)):
+                    color = (255, 0, 0)
+            for t in torre_familia:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 61, 49)
+                if(rect_torre.colliderect(honestidade_rect)):
+                    color = (255, 0, 0)
+            for t in torre_roquei:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 43, 45)
+                if(rect_torre.colliderect(honestidade_rect)):
+                    color = (255, 0, 0)
+            for t in torre_amizade:
+                rect_torre = pygame.rect.Rect(t["x"]+17, t["y"]+17, 49, 61)
+                if(rect_torre.colliderect(honestidade_rect)):
+                    color = (255, 0, 0)
+            for t in range(len(torre_honestidade)-1):
+                rect_torre = pygame.rect.Rect(torre_honestidade[t]["x"]+17, torre_honestidade[t]["y"]+17, 61, 54)
+                if(rect_torre.colliderect(honestidade_rect)):
+                    color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_honestidade[i]["x"]+39, torre_honestidade[i]["y"]+39), 128, 2)
 
     if(len(w) == 0):
@@ -295,4 +390,3 @@ while True:
                     ticks -= 1
     pygame.display.update()
     time_passed = clock.tick(25)
-        
