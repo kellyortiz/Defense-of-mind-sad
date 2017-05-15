@@ -137,16 +137,52 @@ while True:
                     iniciar()
         elif(evento.type == pygame.MOUSEBUTTONUP):
             if(evento.button == 1):
+                stop = False
                 for i in range(len(torre_roquei)):
                     torre_roquei[i]["posicionado"] = True
+                    for i in range(len(torre_roquei)):
+                        if(torre_roquei[i]["valido"] == False):
+                            del(torre_roquei[i])
+                            stop = True
+                            break
+                    if(stop):
+                        break
                 for i in range(len(torre_bobeira)):
                     torre_bobeira[i]["posicionado"] = True
+                    for i in range(len(torre_bobeira)):
+                        if(torre_bobeira[i]["valido"] == False):
+                            del(torre_bobeira[i])
+                            stop = True
+                            break
+                    if(stop):
+                        break
                 for i in range(len(torre_amizade)):
                     torre_amizade[i]["posicionado"] = True
+                    for i in range(len(torre_amizade)):
+                        if(torre_amizade[i]["valido"] == False):
+                            del(torre_amizade[i])
+                            stop = True
+                            break
+                    if(stop):
+                        break
                 for i in range(len(torre_familia)):
                     torre_familia[i]["posicionado"] = True
+                    for i in range(len(torre_familia)):
+                        if(torre_familia[i]["valido"] == False):
+                            del(torre_familia[i])
+                            stop = True
+                            break
+                    if(stop):
+                        break
                 for i in range(len(torre_honestidade)):
                     torre_honestidade[i]["posicionado"] = True
+                    for i in range(len(torre_honestidade)):
+                        if(torre_honestidade[i]["valido"] == False):
+                            del(torre_honestidade[i])
+                            stop = True
+                            break
+                    if(stop):
+                        break
                 
         elif(evento.type == pygame.MOUSEMOTION):
             for i in range(len(torre_roquei)):
@@ -204,7 +240,12 @@ while True:
                 if(rect_torre.colliderect(roquei_rect)):
                     color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43), 100, 2)
-
+            if(color == (255, 0, 0)):
+                torre_roquei[i]["valido"] = False
+                print(torre_roquei[i]["valido"])
+            else:
+                torre_roquei[i]["valido"] = True
+                
     for i in range(len(torre_bobeira)):
         screen.blit(torre_bobeira[i]["img"], (torre_bobeira[i]["x"], torre_bobeira[i]["y"]))
         if(torre_bobeira[i]["posicionado"] == False):
@@ -234,7 +275,12 @@ while True:
                 if(rect_torre.colliderect(bobeira_rect)):
                     color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_bobeira[i]["x"]+40, torre_bobeira[i]["y"]+66), 156, 2)
-
+            if(color == (255, 0, 0)):
+                torre_bobeira[i]["valido"] = False
+                print(torre_bobeira[i]["valido"])
+            else:
+                torre_bobeira[i]["valido"] = True
+                
     for i in range(len(torre_amizade)):
         screen.blit(torre_amizade[i]["img"], (torre_amizade[i]["x"], torre_amizade[i]["y"]))
         if(torre_amizade[i]["posicionado"] == False):
@@ -264,6 +310,11 @@ while True:
                 if(rect_torre.colliderect(amizade_rect)):
                     color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_amizade[i]["x"]+34, torre_amizade[i]["y"]+52), 212, 2)
+            if(color == (255, 0, 0)):
+                torre_amizade[i]["valido"] = False
+                print(torre_amizade[i]["valido"])
+            else:
+                torre_amizade[i]["valido"] = True
 
     for i in range(len(torre_familia)):
         screen.blit(torre_familia[i]["img"], (torre_familia[i]["x"], torre_familia[i]["y"]))
@@ -294,7 +345,12 @@ while True:
                 if(rect_torre.colliderect(familia_rect)):
                     color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_familia[i]["x"]+39, torre_familia[i]["y"]+39), 156, 2)
-
+            if(color == (255, 0, 0)):
+                torre_familia[i]["valido"] = False
+                print(torre_familia[i]["valido"])
+            else:
+                torre_familia[i]["valido"] = True
+                
     for i in range(len(torre_honestidade)):
         screen.blit(torre_honestidade[i]["img"], (torre_honestidade[i]["x"], torre_honestidade[i]["y"]))
         if(torre_honestidade[i]["posicionado"] == False):
@@ -324,7 +380,12 @@ while True:
                 if(rect_torre.colliderect(honestidade_rect)):
                     color = (255, 0, 0)
             pygame.draw.circle(screen, color, (torre_honestidade[i]["x"]+39, torre_honestidade[i]["y"]+39), 128, 2)
-
+            if(color == (255, 0, 0)):
+                torre_honestidade[i]["valido"] = False
+                print(torre_honestidade[i]["valido"])
+            else:
+                torre_honestidade[i]["valido"] = True
+                
     if(len(w) == 0):
         if(new_wave > 0):
             new_wave -= 1
