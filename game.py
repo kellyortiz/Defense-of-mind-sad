@@ -29,9 +29,6 @@ rects.append(pygame.rect.Rect(230, 62, 72, 126))
 rects.append(pygame.rect.Rect(302, 62, 125, 72))
 rects.append(pygame.rect.Rect(355, 138, 72, 314))
 
-print(len(rects))
-print(rects)
-
 reiniciar = False
 new_wave = 75
 w = []
@@ -99,41 +96,33 @@ while True:
         if evento.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pressed() == (1,0,0):
                 x,y = pygame.mouse.get_pos()
-                print(pygame.mouse.get_pos())
                 if ((x > 593 and x < 660) and (y > 175 and y < 230)):
-                    print("Roquei")
                     torre_roquei.append(roquei.criar_roquei())
                     for i in range(len(torre_roquei)):
                         if(torre_roquei[i]["img"] == "torres/img/island/roquei.png"):
                             torre_roquei[i]["img"] = pygame.image.load(torre_roquei[i]["img"]).convert_alpha()
                 elif((x > 710 and x < 780) and (y > 175 and y < 245)):
-                    print("Bobeira")
                     torre_bobeira.append(bobeira.criar_bobeira())
                     for i in range(len(torre_bobeira)):
                         if(torre_bobeira[i]["img"] == "torres/img/island/bobeira.png"):
                             torre_bobeira[i]["img"] = pygame.image.load(torre_bobeira[i]["img"]).convert_alpha()
                 elif((x > 593 and x < 660) and (y > 307 and y < 370)):
-                    print("Amizade")
                     torre_amizade.append(amizade.criar_amizade())
-                    print(torre_amizade)
                     for i in range(len(torre_amizade)):
                         if(torre_amizade[i]["img"] == "torres/img/island/amizade.png"):
                             torre_amizade[i]["img"] = pygame.image.load(torre_amizade[i]["img"]).convert_alpha()
                 elif((x > 710 and x < 780) and (y > 307 and y < 370)):
-                    print("Familia")
                     torre_familia.append(familia.criar_familia())
                     for i in range(len(torre_familia)):
                         if(torre_familia[i]["img"] == "torres/img/island/familia.png"):
                             torre_familia[i]["img"] = pygame.image.load(torre_familia[i]["img"]).convert_alpha()
                 elif((x > 655 and x < 720) and (y > 427 and y < 478)):
-                    print("Honestidade")
                     torre_honestidade.append(honestidade.criar_honestidade())
                     for i in range(len(torre_honestidade)):
                         if(torre_honestidade[i]["img"] == "torres/img/island/honestidade.png"):
                             torre_honestidade[i]["img"] = pygame.image.load(torre_honestidade[i]["img"]).convert_alpha()
 
                 elif((x > 613 and x < 749) and (y > 577 and y < 631)):
-                    print(True)
                     iniciar()
         elif(evento.type == pygame.MOUSEBUTTONUP):
             if(evento.button == 1):
@@ -242,7 +231,6 @@ while True:
             pygame.draw.circle(screen, color, (torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43), 100, 2)
             if(color == (255, 0, 0)):
                 torre_roquei[i]["valido"] = False
-                print(torre_roquei[i]["valido"])
             else:
                 torre_roquei[i]["valido"] = True
                 
@@ -277,7 +265,6 @@ while True:
             pygame.draw.circle(screen, color, (torre_bobeira[i]["x"]+40, torre_bobeira[i]["y"]+66), 156, 2)
             if(color == (255, 0, 0)):
                 torre_bobeira[i]["valido"] = False
-                print(torre_bobeira[i]["valido"])
             else:
                 torre_bobeira[i]["valido"] = True
                 
@@ -312,7 +299,6 @@ while True:
             pygame.draw.circle(screen, color, (torre_amizade[i]["x"]+34, torre_amizade[i]["y"]+52), 212, 2)
             if(color == (255, 0, 0)):
                 torre_amizade[i]["valido"] = False
-                print(torre_amizade[i]["valido"])
             else:
                 torre_amizade[i]["valido"] = True
 
@@ -347,7 +333,6 @@ while True:
             pygame.draw.circle(screen, color, (torre_familia[i]["x"]+39, torre_familia[i]["y"]+39), 156, 2)
             if(color == (255, 0, 0)):
                 torre_familia[i]["valido"] = False
-                print(torre_familia[i]["valido"])
             else:
                 torre_familia[i]["valido"] = True
                 
@@ -382,7 +367,6 @@ while True:
             pygame.draw.circle(screen, color, (torre_honestidade[i]["x"]+39, torre_honestidade[i]["y"]+39), 128, 2)
             if(color == (255, 0, 0)):
                 torre_honestidade[i]["valido"] = False
-                print(torre_honestidade[i]["valido"])
             else:
                 torre_honestidade[i]["valido"] = True
                 
@@ -396,7 +380,6 @@ while True:
             wave.criar_wave()
             wave.definir_wave()
             w = wave.get_wave()
-            print(wave.turn)
             for i in w:
                 maximo.append(len(w[i]))
             cont = 1
@@ -430,9 +413,7 @@ while True:
                     del w[j][i-1]
                     vida.reduzir_vida()
                     vidas = vida.get_vida()
-                    print(vidas)
                     if(vidas == 0):
-                        print("gameover")
                         finalizar()
                     start += 1
                     if(len(w[j]) == 0):

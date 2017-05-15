@@ -17,7 +17,6 @@ def menu(estado):
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.mouse.get_pressed() == (1,0,0):
                     x,y = pygame.mouse.get_pos()
-                    print(pygame.mouse.get_pos())
                     if (x > 769 and x < 784) and (y > 23 and y < 49):
                         return mmenu(evento)
                         estado = False

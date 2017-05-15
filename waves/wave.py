@@ -108,7 +108,3 @@ def _definir_total_bolinhas():
     b = {s: random.randint(10, turn*5)}
     bolinhas.update(b)
     return bolinhas
-
-def iniciar_wave():
-    for i in waves:
-        print(waves)
