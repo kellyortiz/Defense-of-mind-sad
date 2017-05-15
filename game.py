@@ -14,6 +14,9 @@ pygame.init()
 
 screen = pygame.display.set_mode((800, 650), 0, 32)
 
+font_name = pygame.font.get_default_font()
+game_font = pygame.font.SysFont(font_name, 16)
+
 menu = pygame.image.load("img/menu.png").convert_alpha()
 tela = pygame.image.load("img/game.jpg").convert_alpha()
 
@@ -41,6 +44,8 @@ torre_honestidade = []
 torre_bobeira = []
 torre_amizade = []
 torre_roquei = []
+sala_controle = pygame.image.load("img/sala_controle.png").convert_alpha()
+long_memory = pygame.image.load("img/long_therm_memory.png").convert_alpha()
 
 def restart():
     global reiniciar
@@ -49,6 +54,7 @@ def restart():
     global ticks
     global moves
     global maximo
+    
     reiniciar = False
     new_wave = 75
     w = []
@@ -89,34 +95,52 @@ while True:
         pygame.draw.rect(screen, (255, 0, 0), rects[i])
     screen.blit(tela, (4, 0))
     screen.blit(menu, (548, 0))
+
+    qtde_roquei = game_font.render(str(2 - len(torre_roquei)), 1, (255, 0 , 0))
+    screen.blit(qtde_roquei, (645, 168))
+
+    qtde_bobeira = game_font.render(str(2 - len(torre_bobeira)), 1, (255, 0 , 0))
+    screen.blit(qtde_bobeira, (761, 168))
+
+    qtde_familia = game_font.render(str(7 - len(torre_familia)), 1, (255, 0 , 0))
+    screen.blit(qtde_familia, (761, 301))
+
+    qtde_honestidade = game_font.render(str(5 - len(torre_honestidade)), 1, (255, 0 , 0))
+    screen.blit(qtde_honestidade, (701, 420))
+
+    qtde_amizade = game_font.render(str(4 - len(torre_amizade)), 1, (255, 0 , 0))
+    screen.blit(qtde_amizade, (645, 301))
+    
+    
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
         if evento.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pressed() == (1,0,0):
+                print(pygame.mouse.get_pos())
                 x,y = pygame.mouse.get_pos()
-                if ((x > 593 and x < 660) and (y > 175 and y < 230)):
+                if ((x > 593 and x < 660) and (y > 175 and y < 230) and (len(torre_roquei) < 2)):
                     torre_roquei.append(roquei.criar_roquei())
                     for i in range(len(torre_roquei)):
                         if(torre_roquei[i]["img"] == "torres/img/island/roquei.png"):
                             torre_roquei[i]["img"] = pygame.image.load(torre_roquei[i]["img"]).convert_alpha()
-                elif((x > 710 and x < 780) and (y > 175 and y < 245)):
+                elif((x > 710 and x < 780) and (y > 175 and y < 245) and (len(torre_bobeira) < 2)):
                     torre_bobeira.append(bobeira.criar_bobeira())
                     for i in range(len(torre_bobeira)):
                         if(torre_bobeira[i]["img"] == "torres/img/island/bobeira.png"):
                             torre_bobeira[i]["img"] = pygame.image.load(torre_bobeira[i]["img"]).convert_alpha()
-                elif((x > 593 and x < 660) and (y > 307 and y < 370)):
+                elif((x > 593 and x < 660) and (y > 307 and y < 370) and (len(torre_amizade) < 4)):
                     torre_amizade.append(amizade.criar_amizade())
                     for i in range(len(torre_amizade)):
                         if(torre_amizade[i]["img"] == "torres/img/island/amizade.png"):
                             torre_amizade[i]["img"] = pygame.image.load(torre_amizade[i]["img"]).convert_alpha()
-                elif((x > 710 and x < 780) and (y > 307 and y < 370)):
+                elif((x > 710 and x < 780) and (y > 307 and y < 370) and (len(torre_familia) < 7)):
                     torre_familia.append(familia.criar_familia())
                     for i in range(len(torre_familia)):
                         if(torre_familia[i]["img"] == "torres/img/island/familia.png"):
                             torre_familia[i]["img"] = pygame.image.load(torre_familia[i]["img"]).convert_alpha()
-                elif((x > 655 and x < 720) and (y > 427 and y < 478)):
+                elif((x > 655 and x < 720) and (y > 427 and y < 478) and (len(torre_honestidade) < 5)):
                     torre_honestidade.append(honestidade.criar_honestidade())
                     for i in range(len(torre_honestidade)):
                         if(torre_honestidade[i]["img"] == "torres/img/island/honestidade.png"):
@@ -430,5 +454,8 @@ while True:
                     ticks = 22
                 else:
                     ticks -= 1
+    
+    screen.blit(sala_controle, (70, 437))
+    screen.blit(long_memory, (430, 387))
     pygame.display.update()
     time_passed = clock.tick(25)
