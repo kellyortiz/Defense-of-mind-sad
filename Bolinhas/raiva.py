@@ -8,7 +8,7 @@ def criar_raiva(wave):
     iniciar_velocidade()
     if (wave != 1):
         definir_hp(wave)
-    bolinha = bolinhas.criar_bolinha(hp, velocidade, "bolinhas/img/balls/raiva.png")
+    bolinha = bolinhas.criar_bolinha(hp, velocidade, "bolinhas/img/balls/anger.png")
     return bolinha
 
 def iniciar_hp():

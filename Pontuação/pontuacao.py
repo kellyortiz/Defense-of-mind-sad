@@ -9,6 +9,7 @@ def iniciar_ponto():
     pontuacao = 0
 
 def aumentar_pontuacao(ponto):
+    global pontuacao
     pontuacao += ponto
 
 def get_pontuacao():
@@ -18,3 +19,5 @@ def set_pontuacao(ponto):
     global pontuacao
     pontuacao = ponto
     
+aumentar_pontuacao(2)
+print(get_pontuacao())
