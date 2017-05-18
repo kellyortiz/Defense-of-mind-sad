@@ -47,7 +47,7 @@ torre_amizade = []
 torre_roquei = []
 sala_controle = pygame.image.load("img/sala_controle.png").convert_alpha()
 long_memory = pygame.image.load("img/long_therm_memory.png").convert_alpha()
-tiro_roquei = 50
+tiros = []
 
 
 def restart():
@@ -92,16 +92,16 @@ def finalizar():
     screen.fill((0,0,0))
     pygame.display.flip()
 
-def criar_tiro(x, y):
+def criar_tiro(x, y, x_alvo, y_alvo):
     tiro = [255, x, y]
     return tiro
 
-def atualizar_tiro(x_alvo, y_alvo):
+def atualizar_tiro():
     movimento_x = False
     movimento_y = False
-    if(x > x_alvo):
+    if(tiros[2] > x_alvo):
         movimento_x = True
-    if(y > y_alvo):
+    if(tiros[3] > y_alvo):
         movimento_y = True
 
     for t in tiros:
@@ -540,7 +540,7 @@ while True:
                         bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
                         if(bolinha_rect.colliderect(roquei_rect)):
                             
-                            atirar(torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43, w[b][j]["x"], w[b][j]["y"])
+                            tiro = criar_tiro(torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43, w[b][j]["x"], w[b][j]["y"])
                             aux_tiro = True
                             break
                     if(aux_tiro):
