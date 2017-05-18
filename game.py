@@ -39,6 +39,7 @@ w = []
 ticks = 22
 moves = 1
 maximo = []
+ignore = []
 vida.iniciar_vida()
 torre_familia = []
 torre_honestidade = []
@@ -48,7 +49,11 @@ torre_roquei = []
 sala_controle = pygame.image.load("img/sala_controle.png").convert_alpha()
 long_memory = pygame.image.load("img/long_therm_memory.png").convert_alpha()
 tiros = []
-tiro_roquei = 50
+tiro_roquei = 13
+tiro_bobeira = 9
+tiro_amizade = 9
+tiro_familia = 13
+tiro_honestidade = 9
 
 def restart():
     global reiniciar
@@ -92,50 +97,38 @@ def finalizar():
     screen.fill((0,0,0))
     pygame.display.flip()
 
-def criar_tiro(x, y, x_alvo, y_alvo):
-    movimento_x = False
-    movimento_y = False
-    if(x > x_alvo):
-        movimento_x = True
-    if(y > y_alvo):
-        movimento_y = True
-    tiro = [255, x, y, x_alvo, y_alvo, movimento_x, movimento_y]
-    return tiro
+def criar_tiro(x, y, tipo):
+    todos = []
+    for i in range(4):
+        tiro = [255, x, y, tipo]
+        todos.append(tiro)
+    return todos
 
-def atualizar_tiro():
-    for t in tiros:
-        if(t[5]):
-            t[1] -= 1
-        else:
-            t[1] += 1
-        if(t[6]):
-            t[2] -= 1
-        else:
-            t[2] += 1
+def atualizar_tiro(tipo):
+    for i in tiros:
+        for j in range(len(i)):
+            if(j == 0):
+                i[0][1] +=3
+                i[0][2] +=3
+            if(j == 1):
+                i[1][1] +=3
+                i[1][2] -=3
+            if(j == 2):
+                i[2][1] -=3
+                i[2][2] +=3
+            if(j == 3):
+                i[3][1] -=3
+                i[3][2] -=3
 
 def desenhar_tiro():
     for t in tiros:
-        pygame.draw.circle(screen, (t[0], t[0], t[0]), (t[1], t[2]), 10)
+        for j in range(len(t)):
+            pygame.draw.circle(screen, (t[j][0], t[j][0], t[j][0]), (t[j][1], t[j][2]), 10)
 
-##    movimento_x = False
-##    movimento_y = False
-##    cont = 50
-##    if(x > x_alvo):
-##        movimento_x = True
-##    if(y > y_alvo):
-##        movimento_y = True
-##    for i in range(cont, -1, -1):
-##        if(movimento_x):
-##            x -= 1
-##        else:
-##            x += 1
-##        if(movimento_y):
-##            y -= 1
-##        else:
-##            y += 1
-##        pygame.draw.circle(screen, (255, 255, 255), (x, y), 10)
-    
-    
+def destruir_bolinha():
+    pass
+
+
 while True:
     screen.fill((255, 255, 255))
     for i in range(len(rects)):
@@ -143,19 +136,19 @@ while True:
     screen.blit(tela, (4, 0))
     screen.blit(menu, (548, 0))
 
-    qtde_roquei = game_font.render(str(2 - len(torre_roquei)), 1, (255, 0 , 0))
+    qtde_roquei = game_font.render(str(3 - len(torre_roquei)), 1, (255, 0 , 0))
     screen.blit(qtde_roquei, (645, 168))
 
-    qtde_bobeira = game_font.render(str(2 - len(torre_bobeira)), 1, (255, 0 , 0))
+    qtde_bobeira = game_font.render(str(1 - len(torre_bobeira)), 1, (255, 0 , 0))
     screen.blit(qtde_bobeira, (761, 168))
 
-    qtde_familia = game_font.render(str(7 - len(torre_familia)), 1, (255, 0 , 0))
+    qtde_familia = game_font.render(str(1 - len(torre_familia)), 1, (255, 0 , 0))
     screen.blit(qtde_familia, (761, 301))
 
-    qtde_honestidade = game_font.render(str(5 - len(torre_honestidade)), 1, (255, 0 , 0))
+    qtde_honestidade = game_font.render(str(2 - len(torre_honestidade)), 1, (255, 0 , 0))
     screen.blit(qtde_honestidade, (701, 420))
 
-    qtde_amizade = game_font.render(str(4 - len(torre_amizade)), 1, (255, 0 , 0))
+    qtde_amizade = game_font.render(str(1 - len(torre_amizade)), 1, (255, 0 , 0))
     screen.blit(qtde_amizade, (645, 301))
     
     vidas = game_font.render(str(vida.get_vida()), 1, (0, 0, 0))
@@ -172,27 +165,27 @@ while True:
             if pygame.mouse.get_pressed() == (1,0,0):
                 print(pygame.mouse.get_pos())
                 x,y = pygame.mouse.get_pos()
-                if ((x > 593 and x < 660) and (y > 175 and y < 230) and (len(torre_roquei) < 2)):
+                if ((x > 593 and x < 660) and (y > 175 and y < 230) and (len(torre_roquei) < 3)):
                     torre_roquei.append(roquei.criar_roquei())
                     for i in range(len(torre_roquei)):
                         if(torre_roquei[i]["img"] == "torres/img/island/roquei.png"):
                             torre_roquei[i]["img"] = pygame.image.load(torre_roquei[i]["img"]).convert_alpha()
-                elif((x > 710 and x < 780) and (y > 175 and y < 245) and (len(torre_bobeira) < 2)):
+                elif((x > 710 and x < 780) and (y > 175 and y < 245) and (len(torre_bobeira) < 1)):
                     torre_bobeira.append(bobeira.criar_bobeira())
                     for i in range(len(torre_bobeira)):
                         if(torre_bobeira[i]["img"] == "torres/img/island/bobeira.png"):
                             torre_bobeira[i]["img"] = pygame.image.load(torre_bobeira[i]["img"]).convert_alpha()
-                elif((x > 593 and x < 660) and (y > 307 and y < 370) and (len(torre_amizade) < 4)):
+                elif((x > 593 and x < 660) and (y > 307 and y < 370) and (len(torre_amizade) < 1)):
                     torre_amizade.append(amizade.criar_amizade())
                     for i in range(len(torre_amizade)):
                         if(torre_amizade[i]["img"] == "torres/img/island/amizade.png"):
                             torre_amizade[i]["img"] = pygame.image.load(torre_amizade[i]["img"]).convert_alpha()
-                elif((x > 710 and x < 780) and (y > 307 and y < 370) and (len(torre_familia) < 7)):
+                elif((x > 710 and x < 780) and (y > 307 and y < 370) and (len(torre_familia) < 1)):
                     torre_familia.append(familia.criar_familia())
                     for i in range(len(torre_familia)):
                         if(torre_familia[i]["img"] == "torres/img/island/familia.png"):
                             torre_familia[i]["img"] = pygame.image.load(torre_familia[i]["img"]).convert_alpha()
-                elif((x > 655 and x < 720) and (y > 427 and y < 478) and (len(torre_honestidade) < 5)):
+                elif((x > 655 and x < 720) and (y > 427 and y < 478) and (len(torre_honestidade) < 2)):
                     torre_honestidade.append(honestidade.criar_honestidade())
                     for i in range(len(torre_honestidade)):
                         if(torre_honestidade[i]["img"] == "torres/img/island/honestidade.png"):
@@ -515,7 +508,41 @@ while True:
                     start += 1
                     if(len(w[j]) == 0):
                         reiniciar = True
+        
+        total = len(w[b])
+        for t in range(len(tiros)):
+            aux = False
+            for i in range(len(tiros[t])):
+                tiros_rect = pygame.rect.Rect(tiros[t][i][1], tiros[t][i][2], 20, 20)
+                
+                for b in w:
+                    
+                    print(total)
+                    print(ignore)
+                    for j in range(total):
+                        if not(j in ignore):
+                            bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
+                            if(bolinha_rect.colliderect(tiros_rect)):
+                                print(tiros[t][i])
+                                tiros[t].remove(tiros[t][i])
+                                destruir_bolinha()
+                                ignore.append(j)
+                                print(ignore)
+                                del w[b][j]
+                                start += 1
+                                aux = True
+                                break
+                    if(aux):
+                        break
+                if(aux):
+                    break
+            if(aux):
+                if(len(w[b]) == 0):
+                    reiniciar = True
+                break
+                            
         if(reiniciar == True):
+            ignore = []
             for i in w:
                 if(len(w[i]) == 0):
                     del w[i]
@@ -527,19 +554,18 @@ while True:
                     ticks = 22
                 else:
                     ticks -= 1
+
     if(tiro_roquei == 0):
-        tiro_roquei = 50
+        tiro_roquei = 13
         for i in range(len(torre_roquei)):
             if(torre_roquei[i]["posicionado"] == True):
                 aux_tiro = False
-                roquei_rect = pygame.rect.Rect(torre_roquei[i]["x"]-60, torre_roquei[i]["y"]-60, 200, 200)		
-##        pygame.draw.rect(screen, (0,0,0), roquei_rect)
+                roquei_rect = pygame.rect.Rect(torre_roquei[i]["x"]-60, torre_roquei[i]["y"]-60, 200, 200)
                 for b in w:
                     for j in w[b]:
                         bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
                         if(bolinha_rect.colliderect(roquei_rect)):
-                            
-                            tiro = criar_tiro(torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43, w[b][j]["x"], w[b][j]["y"])
+                            tiro = criar_tiro(torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43, 2)
                             tiros.append(tiro)
                             aux_tiro = True
                             break
@@ -547,10 +573,89 @@ while True:
                         break
     else:
         tiro_roquei -= 1
-    
+
+    if(tiro_bobeira == 0):
+        tiro_bobeira = 9
+        for i in range(len(torre_bobeira)):
+            if(torre_bobeira[i]["posicionado"] == True):
+                aux_tiro = False
+                bobeira_rect = pygame.rect.Rect(torre_bobeira[i]["x"]-110, torre_bobeira[i]["y"]-85, 312, 312)
+                for b in w:
+                    for j in w[b]:
+                        bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
+                        if(bolinha_rect.colliderect(bobeira_rect)):
+                            tiro = criar_tiro(torre_bobeira[i]["x"]+35, torre_bobeira[i]["y"]+43, 1)
+                            tiros.append(tiro)
+                            aux_tiro = True
+                            break
+                    if(aux_tiro):
+                        break
+    else:
+        tiro_bobeira -= 1
+
+    if(tiro_amizade == 0):
+        tiro_amizade = 9
+        for i in range(len(torre_amizade)):
+            if(torre_amizade[i]["posicionado"] == True):
+                aux_tiro = False
+                amizade_rect = pygame.rect.Rect(torre_amizade[i]["x"]-160, torre_amizade[i]["y"]-160, 424, 424)
+                for b in w:
+                    for j in w[b]:
+                        bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
+                        if(bolinha_rect.colliderect(amizade_rect)):
+                            
+                            tiro = criar_tiro(torre_amizade[i]["x"]+35, torre_amizade[i]["y"]+43, 1)
+                            tiros.append(tiro)
+                            aux_tiro = True
+                            break
+                    if(aux_tiro):
+                        break
+    else:
+        tiro_amizade -= 1
+
+    if(tiro_familia == 0):
+        tiro_familia = 13
+        for i in range(len(torre_familia)):
+            if(torre_familia[i]["posicionado"] == True):
+                aux_tiro = False
+                familia_rect = pygame.rect.Rect(torre_familia[i]["x"]-110, torre_familia[i]["y"]-85, 312, 312)
+                for b in w:
+                    for j in w[b]:
+                        bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
+                        if(bolinha_rect.colliderect(familia_rect)):
+                            tiro = criar_tiro(torre_familia[i]["x"]+35, torre_familia[i]["y"]+43, 1)
+                            tiros.append(tiro)
+                            aux_tiro = True
+                            break
+                    if(aux_tiro):
+                        break
+    else:
+        tiro_familia -= 1
+
+    if(tiro_honestidade == 0):
+        tiro_honestidade = 9
+        for i in range(len(torre_honestidade)):
+            if(torre_honestidade[i]["posicionado"] == True):
+                aux_tiro = False
+                honestidade_rect = pygame.rect.Rect(torre_honestidade[i]["x"]-85, torre_honestidade[i]["y"]-85, 256, 256)
+                for b in w:
+                    for j in w[b]:
+                        bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
+                        if(bolinha_rect.colliderect(honestidade_rect)):
+                            
+                            tiro = criar_tiro(torre_honestidade[i]["x"]+35, torre_honestidade[i]["y"]+43, 1)
+                            tiros.append(tiro)
+                            aux_tiro = True
+                            break
+                    if(aux_tiro):
+                        break
+    else:
+        tiro_honestidade -= 1
+
     screen.blit(sala_controle, (70, 437))
     screen.blit(long_memory, (430, 387))
-    atualizar_tiro()
+    atualizar_tiro(1)
+    atualizar_tiro(2)
     desenhar_tiro()
     pygame.display.update()
     time_passed = clock.tick(25)

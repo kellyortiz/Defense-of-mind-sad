@@ -26,7 +26,7 @@ def iniciar_torres():
     alcance = 50
     dano = 2
     velocidade = 2
-    disponivel = 2
+    disponivel = 1
     tempo = 120
     tipoTiro = "b"
     img = "torres/img/island/roquei.png"
