@@ -48,7 +48,7 @@ torre_roquei = []
 sala_controle = pygame.image.load("img/sala_controle.png").convert_alpha()
 long_memory = pygame.image.load("img/long_therm_memory.png").convert_alpha()
 tiros = []
-
+tiro_roquei = 50
 
 def restart():
     global reiniciar
@@ -93,23 +93,22 @@ def finalizar():
     pygame.display.flip()
 
 def criar_tiro(x, y, x_alvo, y_alvo):
-    tiro = [255, x, y]
+    movimento_x = False
+    movimento_y = False
+    if(x > x_alvo):
+        movimento_x = True
+    if(y > y_alvo):
+        movimento_y = True
+    tiro = [255, x, y, x_alvo, y_alvo, movimento_x, movimento_y]
     return tiro
 
 def atualizar_tiro():
-    movimento_x = False
-    movimento_y = False
-    if(tiros[2] > x_alvo):
-        movimento_x = True
-    if(tiros[3] > y_alvo):
-        movimento_y = True
-
     for t in tiros:
-        if(movimento_x):
+        if(t[5]):
             t[1] -= 1
         else:
             t[1] += 1
-        if(movimento_y):
+        if(t[6]):
             t[2] -= 1
         else:
             t[2] += 1
@@ -541,13 +540,17 @@ while True:
                         if(bolinha_rect.colliderect(roquei_rect)):
                             
                             tiro = criar_tiro(torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43, w[b][j]["x"], w[b][j]["y"])
+                            tiros.append(tiro)
                             aux_tiro = True
                             break
                     if(aux_tiro):
                         break
     else:
         tiro_roquei -= 1
+    
     screen.blit(sala_controle, (70, 437))
     screen.blit(long_memory, (430, 387))
+    atualizar_tiro()
+    desenhar_tiro()
     pygame.display.update()
     time_passed = clock.tick(25)
