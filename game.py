@@ -472,6 +472,7 @@ while True:
             w = wave.get_wave()
             for i in w:
                 maximo.append(len(w[i]))
+                print(maximo)
             cont = 1
             start = 1
             new_wave = 75
@@ -485,31 +486,35 @@ while True:
                 x += 10
         for i in range(start, cont):
             for j in w:
-                if(w[j][i-1]["x"] <= 130):
-                    w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
-                elif((w[j][i-1]["y"] >= 215) and (w[j][i-1]["x"] <= 252)):
-                    w[j][i-1]["y"] -= w[j][i-1]["velocidade_atual"]
-                elif(w[j][i-1]["x"] <= 252):
-                    w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
-                elif((w[j][i-1]["y"] >= 94) and (w[j][i-1]["x"] <= 378)):
-                    w[j][i-1]["y"] -= w[j][i-1]["velocidade_atual"]
-                elif(w[j][i-1]["x"] <= 378):
-                    w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
-                elif(w[j][i-1]["y"] <= 403):
-                    w[j][i-1]["y"] += w[j][i-1]["velocidade_atual"]
-                elif(w[j][i-1]["x"] <= 456):
-                    w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+##                print(i-1)
+##                print(ignore)
+                if not(i-1 in ignore):
+                    if(w[j][i-1]["x"] <= 130):
+                        w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+                    elif((w[j][i-1]["y"] >= 215) and (w[j][i-1]["x"] <= 252)):
+                        w[j][i-1]["y"] -= w[j][i-1]["velocidade_atual"]
+                    elif(w[j][i-1]["x"] <= 252):
+                        w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+                    elif((w[j][i-1]["y"] >= 94) and (w[j][i-1]["x"] <= 378)):
+                        w[j][i-1]["y"] -= w[j][i-1]["velocidade_atual"]
+                    elif(w[j][i-1]["x"] <= 378):
+                        w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+                    elif(w[j][i-1]["y"] <= 403):
+                        w[j][i-1]["y"] += w[j][i-1]["velocidade_atual"]
+                    elif(w[j][i-1]["x"] <= 456):
+                        w[j][i-1]["x"] += w[j][i-1]["velocidade_atual"]
+                    else:
+                        del w[j][i-1]
+                        vida.reduzir_vida()
+                        vidas = vida.get_vida()
+                        if(vidas == 0):
+                            finalizar()
+                        start += 1
+                        if(len(w[j]) == 0):
+                            reiniciar = True
                 else:
-                    del w[j][i-1]
-                    vida.reduzir_vida()
-                    vidas = vida.get_vida()
-                    if(vidas == 0):
-                        finalizar()
-                    start += 1
-                    if(len(w[j]) == 0):
-                        reiniciar = True
-        
-        total = len(w[b])
+                    print(i-1)
+                    print(False)
         for t in range(len(tiros)):
             aux = False
             for i in range(len(tiros[t])):
@@ -517,19 +522,18 @@ while True:
                 
                 for b in w:
                     
-                    print(total)
-                    print(ignore)
-                    for j in range(total):
+                    for j in w[b]:
                         if not(j in ignore):
                             bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
                             if(bolinha_rect.colliderect(tiros_rect)):
-                                print(tiros[t][i])
+##                                print(j)
+##                                print(tiros[t][i])
                                 tiros[t].remove(tiros[t][i])
                                 destruir_bolinha()
                                 ignore.append(j)
-                                print(ignore)
+##                                print(ignore)
                                 del w[b][j]
-                                start += 1
+##                                start += 1
                                 aux = True
                                 break
                     if(aux):
@@ -538,6 +542,7 @@ while True:
                     break
             if(aux):
                 if(len(w[b]) == 0):
+                    print(len(w[b]))
                     reiniciar = True
                 break
                             
