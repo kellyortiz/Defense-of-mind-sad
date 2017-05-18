@@ -47,6 +47,8 @@ torre_amizade = []
 torre_roquei = []
 sala_controle = pygame.image.load("img/sala_controle.png").convert_alpha()
 long_memory = pygame.image.load("img/long_therm_memory.png").convert_alpha()
+tiro_roquei = 50
+
 
 def restart():
     global reiniciar
@@ -90,6 +92,26 @@ def finalizar():
     screen.fill((0,0,0))
     pygame.display.flip()
 
+def atirar(x, y, x_alvo, y_alvo):
+    movimento_x = False
+    movimento_y = False
+    cont = 50
+    if(x > x_alvo):
+        movimento_x = True
+    if(y > y_alvo):
+        movimento_y = True
+    for i in range(cont, -1, -1):
+        if(movimento_x):
+            x -= 1
+        else:
+            x += 1
+        if(movimento_y):
+            y -= 1
+        else:
+            y += 1
+        pygame.draw.circle(screen, (255, 255, 255), (x, y), 10)
+    
+    
 while True:
     screen.fill((255, 255, 255))
     for i in range(len(rects)):
@@ -481,7 +503,25 @@ while True:
                     ticks = 22
                 else:
                     ticks -= 1
-    
+    if(tiro_roquei == 0):
+        tiro_roquei = 50
+        for i in range(len(torre_roquei)):
+            if(torre_roquei[i]["posicionado"] == True):
+                aux_tiro = False
+                roquei_rect = pygame.rect.Rect(torre_roquei[i]["x"]-60, torre_roquei[i]["y"]-60, 200, 200)		
+##        pygame.draw.rect(screen, (0,0,0), roquei_rect)
+                for b in w:
+                    for j in w[b]:
+                        bolinha_rect = pygame.rect.Rect(w[b][j]["x"], w[b][j]["y"], 22, 22)
+                        if(bolinha_rect.colliderect(roquei_rect)):
+                            
+                            atirar(torre_roquei[i]["x"]+35, torre_roquei[i]["y"]+43, w[b][j]["x"], w[b][j]["y"])
+                            aux_tiro = True
+                            break
+                    if(aux_tiro):
+                        break
+    else:
+        tiro_roquei -= 1
     screen.blit(sala_controle, (70, 437))
     screen.blit(long_memory, (430, 387))
     pygame.display.update()
