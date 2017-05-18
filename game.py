@@ -92,24 +92,49 @@ def finalizar():
     screen.fill((0,0,0))
     pygame.display.flip()
 
-def atirar(x, y, x_alvo, y_alvo):
+def criar_tiro(x, y):
+    tiro = [255, x, y]
+    return tiro
+
+def atualizar_tiro(x_alvo, y_alvo):
     movimento_x = False
     movimento_y = False
-    cont = 50
     if(x > x_alvo):
         movimento_x = True
     if(y > y_alvo):
         movimento_y = True
-    for i in range(cont, -1, -1):
+
+    for t in tiros:
         if(movimento_x):
-            x -= 1
+            t[1] -= 1
         else:
-            x += 1
+            t[1] += 1
         if(movimento_y):
-            y -= 1
+            t[2] -= 1
         else:
-            y += 1
-        pygame.draw.circle(screen, (255, 255, 255), (x, y), 10)
+            t[2] += 1
+
+def desenhar_tiro():
+    for t in tiros:
+        pygame.draw.circle(screen, (t[0], t[0], t[0]), (t[1], t[2]), 10)
+
+##    movimento_x = False
+##    movimento_y = False
+##    cont = 50
+##    if(x > x_alvo):
+##        movimento_x = True
+##    if(y > y_alvo):
+##        movimento_y = True
+##    for i in range(cont, -1, -1):
+##        if(movimento_x):
+##            x -= 1
+##        else:
+##            x += 1
+##        if(movimento_y):
+##            y -= 1
+##        else:
+##            y += 1
+##        pygame.draw.circle(screen, (255, 255, 255), (x, y), 10)
     
     
 while True:
